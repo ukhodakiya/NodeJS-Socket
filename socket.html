@@ -1,0 +1,26 @@
+
+<html>
+<head>
+
+    <title>Node- Socket</title>
+    <script src="socket.io/socket.io.js"></script>
+</head>
+<body>
+<h1> NodeJS - Socket Example</h1>
+<p id="p1"></p>
+<input type="text" id="textbox" placeholder="Type your message"/>
+<button id="btn">Send</button>
+<script>
+    var socket = io.connect()
+    socket.on("data_to_client",function(data){
+        // console.log(data);
+        document.getElementById("p1").innerHTML += data+"<br />";
+    });
+
+
+    document.getElementById("btn").addEventListener("click", function(){
+       socket.emit("data_to_server",document.getElementById("textbox").value);
+    });
+</script>
+</body>
+</html>
